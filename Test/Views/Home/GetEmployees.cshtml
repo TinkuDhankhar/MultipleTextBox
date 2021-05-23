@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Test.Models.Employ>
+
+@{
+    ViewBag.Title = "GetEmployees";
+}
+
+<h2>GetEmployees</h2>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img height="50%" width="50%" src="" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ProfileImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ResumeFile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.QualificatoinCert)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mobile)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CountryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StateName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CityName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        <a onclick="showImage('@item.ProfileImage')">@item.Name image</a>
+        @*@Html.DisplayFor(modelItem => item.ProfileImage)*@
+    </td>
+    <td>
+        <a onclick="showResume('@item.ResumeFile')">@item.Name resume</a>
+        @*@Html.DisplayFor(modelItem => item.ResumeFile)*@
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.QualificatoinCert)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+    </td>
+</tr>
+    }
+
+</table>
+@section scripts{
+    <script>
+        function showImage(img) {
+            $('img').attr('src', '/ProfileImage/' + img + '');
+            $("#exampleModal").modal('show');
+        }
+        function showResume(img) {
+            $('img').attr('src', '/Resumes/' + img + '');
+            $("#exampleModal").modal('show');
+        }
+    </script>
+}
